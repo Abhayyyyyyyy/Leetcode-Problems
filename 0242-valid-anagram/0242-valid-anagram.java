@@ -9,14 +9,6 @@ class Solution {
         char[] tArr = t.toCharArray();
         Arrays.sort(tArr);
         
-        for(int i = 0; i < sArr.length; i++){
-                if(sArr[i] == tArr[i] ){
-                    continue;
-                }
-            else{
-                return false;
-            }
-            }
-    return true;
+        return Arrays.equals(sArr, tArr);
     }
 }
