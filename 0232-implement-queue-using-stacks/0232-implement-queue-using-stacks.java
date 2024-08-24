@@ -1,28 +1,32 @@
 class MyQueue {
-    int front;
-    int rear;
-    ArrayList<Integer> list;
+    Stack<Integer> main;
+    Stack<Integer> temp;
+
     public MyQueue() {
-        front = rear = -1;
-        list = new ArrayList<>();
+        main = new Stack<>();
+        temp = new Stack<>();    
     }
     
     public void push(int x) {
-        rear++;
-        list.add(x);
+        while(main.size() != 0){
+            temp.push(main.pop());
+        }
+        main.push(x);
+        while(temp.size() != 0){
+            main.push(temp.pop());
+        }
     }
     
     public int pop() {
-        front++;
-        return list.get(front);
+        return main.pop();
     }
     
     public int peek() {
-        return list.get(front + 1);
+        return main.peek();
     }
     
     public boolean empty() {
-        return front == rear ? true : false;
+        return main.size() == 0;
     }
 }
 
