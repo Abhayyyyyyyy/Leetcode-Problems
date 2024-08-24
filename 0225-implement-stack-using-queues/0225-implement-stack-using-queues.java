@@ -1,31 +1,35 @@
 class MyStack {
-    int top;
-    ArrayList<Integer> list;
+    Queue<Integer> main;
+    Queue<Integer> temp;
 
     public MyStack() {
-        top = -1;
-        list = new ArrayList<>();
+        main = new LinkedList<>();
+        temp = new LinkedList<>();
     }
     
     public void push(int x) {
-        top++;
-        list.add(x);
+        while(main.size() != 0){
+            temp.offer(main.poll());
+        }
+        main.offer(x);
+        while(temp.size() != 0){
+            main.offer(temp.poll());
+        }
     }
     
     public int pop() {
-        int value = list.remove(top);
-        top--;
-        return value;
+        return main.poll();
     }
     
     public int top() {
-        return list.get(top);
+        return main.peek();
     }
     
     public boolean empty() {
-        return top == -1 ? true : false;
+        return main.size() == 0;
     }
 }
+
 
 /**
  * Your MyStack object will be instantiated and called as such:
